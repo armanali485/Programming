@@ -1,5 +1,5 @@
 public class Number {
-
+    //06-05-2025
     // 1. WAP to count digit of a Number.
     public static int countDigit(int n) 
 	{
@@ -57,7 +57,7 @@ public class Number {
 
 
     //6. WAP to Check number is a perfect number or not.
-    public static boolean  checkPerfectNumber(int n){
+    public static boolean  isPerfectNumber(int n){
         int sum = 0;
         for(int i=1;i<=n/2;i++){
             if(n%i==0){
@@ -68,7 +68,7 @@ public class Number {
     }
 
     //7. WAP to check weather a number is prime or not.
-    public static boolean  checkPrimeNumber(int n) {
+    public static boolean  isPrimeNumber(int n) {
         if (n <= 1) 
             return false;
         if (n == 2)
@@ -84,12 +84,12 @@ public class Number {
     }
 
     //8. WAP to check a year is leap year
-    public static boolean  checkLeapYear(int year){
+    public static boolean  isLeapYear(int year){
         return year%4==0 && (year%400==0 || year%100!=0);
     }
     //08-05-2025
     //9. WAP to check a number is Strong Number or Not.
-    public static boolean checkStrong(int n){
+    public static boolean isStrong(int n){
         int sum=0;
         int temp=n;
         while(n!=0){
@@ -102,7 +102,7 @@ public class Number {
     }
 
     //10. WAP to check number is neon number or not.
-    public static boolean checkNeon(int n){
+    public static boolean isNeon(int n){
         int squre=n*n;
         int sum =0;
         while(squre!=0){
@@ -111,13 +111,22 @@ public class Number {
         }
         return sum==n;
     }
-
-    public static void happyNumber(int n){
-        
+    //11. WAP to check a number is happy number or not.
+    public static boolean  isHappy(int n){
+        while(n!=1 && n!=4){
+            int sum=0;
+            while(n!=0){
+                int digit = n % 10;
+                sum += digit * digit;
+                n /= 10;
+            }
+            n=sum;
+        }
+        return n==1;
     }
 
-
-    public static boolean armStrongNumber(int n){
+    //12. WAP to check Armstrong Number.
+    public static boolean IsArmStrong(int n){
         int count = countDigit(n);
         int sum=0;
         int temp=n;
@@ -137,15 +146,15 @@ public class Number {
         System.out.println("Reverse of " + n  + " is: " + new StringBuffer(n+"").reverse());
 
         //07-05-2025
-        System.out.println(checkPerfectNumber(8));
-        System.out.println(checkPrimeNumber(7));
-        System.out.println(checkLeapYear(2400));
+        System.out.println(isPerfectNumber(8));
+        System.out.println(isPrimeNumber(7));
+        System.out.println(isLeapYear(2400));
         System.out.println(power(2, 0));
 
         //08-05-2025
-        System.out.println(checkStrong(7));
-        System.out.println(checkNeon(9));
-        System.out.println(armStrongNumber(1634));
+        System.out.println(isStrong(7));
+        System.out.println(isNeon(9));
+        System.out.println(IsArmStrong(1634));
         
     }
 }
