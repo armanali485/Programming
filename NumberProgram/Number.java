@@ -87,6 +87,7 @@ public class Number {
     public static boolean  isLeapYear(int year){
         return year%4==0 && (year%400==0 || year%100!=0);
     }
+
     //08-05-2025
     //9. WAP to check a number is Strong Number or Not.
     public static boolean isStrong(int n){
@@ -137,6 +138,54 @@ public class Number {
         return sum==temp;
     }
 
+    //12-05-2025
+    //13. WAP to check number is palindrome or not.
+    public static boolean isPalindrome(int n){
+        int original = n;          
+        int revNum=0;
+        while(n!=0){
+            revNum=revNum*10+n%10;
+            n/=10;
+        }
+        return original==revNum;
+    }
+
+    //14. WAP to print Fibonacci Series.
+    public static void fibonacciSeries(int n){
+        int first = 0, second = 1, next, i;
+         for (i = 0; i < n; i++) {
+        if (i <= 1) {
+            next = i;
+        } else {
+            next = first + second;
+            first = second;
+            second = next;
+        }
+        System.out.print(next+" ");
+    }
+    System.out.println();
+    }
+
+
+    //15. WAP to convert decimal to binary.
+    public static String decimalToBinary(int n){
+        StringBuffer res = new StringBuffer("");
+        while(n!=0){
+            res.insert(0, n%2);
+            n/=2;
+        }
+        return res+"";
+    }
+
+    //16. WAP to convert Binary to Decimal
+    public static int binaryToDecimal(int n){
+        int decimal=0;
+        for(int i=0;n!=0;i++){
+            decimal += n%10==1?power(2, i):0;
+            n/=10;
+        }
+        return decimal;
+    }
     public static void main(String[] args) {
         int n = 12345;
         System.out.println("Number of digits in " + n + " is: " + (n+"").length());
@@ -146,15 +195,25 @@ public class Number {
         System.out.println("Reverse of " + n  + " is: " + new StringBuffer(n+"").reverse());
 
         //07-05-2025
+        System.out.println("------07-05-2025-------");
         System.out.println(isPerfectNumber(8));
         System.out.println(isPrimeNumber(7));
         System.out.println(isLeapYear(2400));
         System.out.println(power(2, 0));
 
         //08-05-2025
+        System.out.println("------08-05-2025-------");
         System.out.println(isStrong(7));
         System.out.println(isNeon(9));
         System.out.println(IsArmStrong(1634));
+
+
+        //12-05-2025
+        System.out.println("------12-05-2025-------");
+        fibonacciSeries(5);
+        System.out.println(isPalindrome(128921));
+        System.out.println(decimalToBinary(13));
+        System.out.println(binaryToDecimal(101011101));
         
     }
 }

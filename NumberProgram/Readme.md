@@ -880,3 +880,338 @@ digit₁ⁿ + digit₂ⁿ + ... + digitₖⁿ = original number
    - Continues until all digits processed (n=0)
    - Preserves original number in `temp`
 
+**Date:** 12-05-2025 
+> 13. WAP to check number is palindrome or not.
+```java
+    public static boolean isPalindrome(int n)
+    {
+        int original = n;          
+        int revNum=0;
+        while(n!=0){
+            revNum=revNum*10+n%10;
+            n/=10;
+        }
+        return original==revNum;
+    }
+```
+
+## Method Tracing: `isPalindrome(int n)`
+
+### Purpose
+This method checks if a number is a palindrome (reads the same backward as forward).
+
+### Tracing Steps
+
+#### Example 1: `n = 121` (Palindrome)
+| Step | Variable | Value/Operation |
+|------|----------|-----------------|
+| Init | original | 121 |
+| Init | revNum | 0 |
+| Init | n | 121 |
+| Loop 1 | n%10 | 1 |
+|       | revNum = 0*10 + 1 | 1 |
+|       | n /= 10 | 12 |
+| Loop 2 | n%10 | 2 |
+|       | revNum = 1*10 + 2 | 12 |
+|       | n /= 10 | 1 |
+| Loop 3 | n%10 | 1 |
+|       | revNum = 12*10 + 1 | 121 |
+|       | n /= 10 | 0 |
+| Comparison | original == revNum | 121 == 121 |
+| **Result** | | **true** |
+
+#### Example 2: `n = 123` (Not Palindrome)
+| Step | Variable | Value/Operation |
+|------|----------|-----------------|
+| Init | original | 123 |
+| Init | revNum | 0 |
+| Init | n | 123 |
+| Loop 1 | n%10 | 3 |
+|       | revNum = 0*10 + 3 | 3 |
+|       | n /= 10 | 12 |
+| Loop 2 | n%10 | 2 |
+|       | revNum = 3*10 + 2 | 32 |
+|       | n /= 10 | 1 |
+| Loop 3 | n%10 | 1 |
+|       | revNum = 32*10 + 1 | 321 |
+|       | n /= 10 | 0 |
+| Comparison | original == revNum | 123 == 321 |
+| **Result** | | **false** |
+
+#### Example 3: `n = 9` (Single-digit Palindrome)
+| Step | Variable | Value/Operation |
+|------|----------|-----------------|
+| Init | original | 9 |
+| Init | revNum | 0 |
+| Init | n | 9 |
+| Loop 1 | n%10 | 9 |
+|       | revNum = 0*10 + 9 | 9 |
+|       | n /= 10 | 0 |
+| Comparison | original == revNum | 9 == 9 |
+| **Result** | | **true** |
+
+### Key Characteristics
+1. **Digit Reversal**:
+   - Extracts last digit using `n%10`
+   - Builds reversed number by `revNum*10 + digit`
+   - Removes last digit using `n/10`
+
+2. **Original Preservation**:
+   - Stores original number before modification
+   - Critical for correct comparison
+
+3. **Termination**:
+   - Continues until all digits processed (n=0)
+   - Returns comparison result
+
+### Time Complexity
+- O(d) where d is number of digits
+- Each digit requires:
+  - One modulo operation
+  - One multiplication and addition
+  - One division
+
+### Space Complexity
+- O(1) constant space (only few variables used)
+
+> 14. WAP to print Fibonacci Series.
+
+## Method Tracing: `fibonacciSeries(int n)`
+
+### Purpose
+This method prints the first `n` numbers in the Fibonacci sequence.
+
+### Fibonacci Sequence Definition
+Each number is the sum of the two preceding ones, starting from 0 and 1:
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+### Components
+1. Initializes first two numbers (0 and 1)
+2. Uses iteration to calculate subsequent numbers
+3. Prints each number in sequence
+
+### Tracing Steps
+
+#### Example 1: `n = 5`
+| Iteration (i) | Condition (i <= 1) | Operation | Variables (first, second, next) | Output |
+|---------------|--------------------|-----------|----------------------------------|--------|
+| 0             | true               | next = 0  | (0, 1, 0)                        | 0      |
+| 1             | true               | next = 1  | (0, 1, 1)                        | 1      |
+| 2             | false              | next = 0+1=1, first=1, second=1 | (1, 1, 1) | 1      |
+| 3             | false              | next = 1+1=2, first=1, second=2 | (1, 2, 2) | 2      |
+| 4             | false              | next = 1+2=3, first=2, second=3 | (2, 3, 3) | 3      |
+
+**Final Output:** `0 1 1 2 3`
+
+#### Example 2: `n = 1`
+| Iteration (i) | Condition | Operation | Variables | Output |
+|---------------|-----------|-----------|-----------|--------|
+| 0             | true      | next = 0  | (0, 1, 0) | 0      |
+
+**Final Output:** `0`
+
+#### Example 3: `n = 8`
+| Iteration | Condition | Operation | Variables | Output |
+|-----------|-----------|-----------|-----------|--------|
+| 0         | true      | next = 0  | (0, 1, 0) | 0      |
+| 1         | true      | next = 1  | (0, 1, 1) | 1      |
+| 2         | false     | 0+1=1, (1,1,1) | (1,1,1) | 1      |
+| 3         | false     | 1+1=2, (1,2,2) | (1,2,2) | 2      |
+| 4         | false     | 1+2=3, (2,3,3) | (2,3,3) | 3      |
+| 5         | false     | 2+3=5, (3,5,5) | (3,5,5) | 5      |
+| 6         | false     | 3+5=8, (5,8,8) | (5,8,8) | 8      |
+| 7         | false     | 5+8=13, (8,13,13) | (8,13,13) | 13     |
+
+**Final Output:** `0 1 1 2 3 5 8 13`
+
+### Key Characteristics
+1. **Initialization**:
+   - `first = 0`, `second = 1`
+   - Special handling for first two numbers (i ≤ 1)
+
+2. **Iteration**:
+   - For i > 1: next = first + second
+   - Then shift values: first = second, second = next
+
+3. **Output**:
+   - Prints each number with space separator
+   - Ends with newline
+
+### Optimization Notes
+1. **Space Efficiency**:
+   - Uses O(1) space (only 3 variables)
+   
+2. **Time Efficiency**:
+   - O(n) time complexity (optimal for this task)
+
+### Time Complexity Analysis
+- Each iteration does constant work
+- Exactly n iterations
+- Total time: O(n)
+
+### Space Complexity Analysis
+- Only uses 4 integer variables regardless of n
+- Space: O(1)
+
+> 15. WAP to convert decimal to binary.
+```java
+    public static String decimalToBinary(int n)
+    {
+        StringBuffer res = new StringBuffer("");
+        while(n!=0){
+            res.insert(0, n%2);
+            n/=2;
+        }
+        return res+"";
+    }
+```
+
+## Method Tracing: `decimalToBinary(int n)`
+
+### Purpose
+This method converts a decimal integer to its binary string representation.
+
+### Conversion Process
+1. Repeatedly divides the number by 2
+2. Records remainders (0 or 1)
+3. Builds the binary string by prepending remainders
+
+### Components
+- Uses `StringBuffer` for efficient string building
+- Prepends each new bit to maintain correct order
+- Handles positive integers (negative numbers require two's complement)
+
+### Tracing Steps
+
+#### Example 1: `n = 10` (Decimal)
+| Iteration | n Value | n%2 | res (before) | res (after) | n/=2 |
+|-----------|---------|-----|--------------|-------------|------|
+| 1         | 10      | 0   | ""           | "0"         | 5    |
+| 2         | 5       | 1   | "0"          | "10"        | 2    |
+| 3         | 2       | 0   | "10"         | "010"       | 1    |
+| 4         | 1       | 1   | "010"        | "1010"      | 0    |
+
+**Final Result:** `"1010"`  
+*(Decimal 10 = Binary 1010)*
+
+#### Example 2: `n = 1` (Edge Case)
+| Iteration | n Value | n%2 | res (before) | res (after) | n/=2 |
+|-----------|---------|-----|--------------|-------------|------|
+| 1         | 1       | 1   | ""           | "1"         | 0    |
+
+**Final Result:** `"1"`  
+*(Decimal 1 = Binary 1)*
+
+#### Example 3: `n = 0` (Edge Case)
+- Loop condition `n!=0` fails immediately
+- Returns empty string `""` (could be considered as "0")
+
+### Key Characteristics
+1. **String Building**:
+   - Uses `StringBuffer` for efficient prepend operations
+   - `insert(0, bit)` maintains correct bit order
+
+2. **Termination**:
+   - Continues until `n` becomes 0
+   - Returns the accumulated binary string
+
+### Time Complexity
+- O(log n) - Number of divisions needed
+- Each iteration:
+  - One modulo operation
+  - One division
+  - One string insertion
+
+### Space Complexity
+- O(log n) - Space needed for binary string representation
+
+> 16. WAP to convert Binary to Decimal.
+```java
+    public static int binaryToDecimal(int n)
+    {
+        int decimal=0;
+        for(int i=0;n!=0;i++){
+            decimal += n%10==1?power(2, i):0;
+            n/=10;
+        }
+        return decimal;
+    }
+```
+
+## Method Tracing: `binaryToDecimal(int n)`
+
+### Purpose
+This method converts a binary number (passed as integer) to its decimal equivalent.
+
+### Conversion Process
+1. Processes each digit from right to left (LSB to MSB)
+2. For each '1' bit, adds 2^i to the result (where i is the bit position)
+3. Ignores '0' bits
+
+### Components
+- Uses `power(2, i)` to calculate place values
+- Processes digits using `n%10` and `n/10`
+- Accumulates result in `decimal`
+
+### Tracing Steps
+
+#### Example 1: `n = 1010` (Binary)
+| Iteration (i) | n Value | n%10 | Condition (n%10==1) | Calculation | decimal | n/=10 |
+|---------------|---------|------|---------------------|-------------|---------|-------|
+| 0             | 1010    | 0    | false               | 0           | 0       | 101   |
+| 1             | 101     | 1    | true                | 2^1 = 2     | 2       | 10    |
+| 2             | 10      | 0    | false               | 0           | 2       | 1     |
+| 3             | 1       | 1    | true                | 2^3 = 8     | 10      | 0     |
+
+**Final Result:** `10`  
+*(Binary 1010 = Decimal 10)*
+
+---
+
+#### Example 2: `n = 111` (Binary)
+| Iteration (i) | n Value | n%10 | Condition | Calculation | decimal | n/=10 |
+|---------------|---------|------|-----------|-------------|---------|-------|
+| 0             | 111     | 1    | true      | 2^0 = 1     | 1       | 11    |
+| 1             | 11      | 1    | true      | 2^1 = 2     | 3       | 1     |
+| 2             | 1       | 1    | true      | 2^2 = 4     | 7       | 0     |
+
+**Final Result:** `7`  
+*(Binary 111 = Decimal 7)*
+
+---
+
+#### Example 3: `n = 10000` (Binary)
+| Iteration (i) | n Value | n%10 | Condition | Calculation | decimal | n/=10 |
+|---------------|---------|------|-----------|-------------|---------|-------|
+| 0             | 10000   | 0    | false     | 0           | 0       | 1000  |
+| 1             | 1000    | 0    | false     | 0           | 0       | 100   |
+| 2             | 100     | 0    | false     | 0           | 0       | 10    |
+| 3             | 10      | 0    | false     | 0           | 0       | 1     |
+| 4             | 1       | 1    | true      | 2^4 = 16    | 16      | 0     |
+
+**Final Result:** `16`  
+*(Binary 10000 = Decimal 16)*
+
+### Key Characteristics
+1. **Digit Processing**:
+   - Extracts rightmost digit with `n%10`
+   - Removes processed digit with `n/10`
+
+2. **Power Calculation**:
+   - Uses helper method `power(2, i)`
+   - Position value increases with each iteration (0 → 1 → 2...)
+
+3. **Termination**:
+   - Stops when `n` becomes 0
+   - Returns accumulated decimal value
+
+### Time Complexity
+- O(d) where d is number of digits
+- Each iteration:
+  - One modulo operation
+  - One division
+  - One power calculation
+  - One conditional addition
+
+### Space Complexity
+- O(1) constant space (only few variables used)
