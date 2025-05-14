@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class PrintingName {
+public class PrintingName {
     static int delay;
     static int row;
     static int col;
