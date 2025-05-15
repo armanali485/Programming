@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
-public class ArraysProgram{
+public class ReverseElementOfArray
+{
     public static int reverseDigit(int n){
         int revNum=0;
         while(n!=0){
